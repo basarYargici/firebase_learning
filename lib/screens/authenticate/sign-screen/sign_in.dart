@@ -45,7 +45,7 @@ class _SignState extends State<Sign> {
             fontSize: Constants.bigFontSize,
             onPressed: () async {
               //signProcess = await _auth.signInMail('deneme@gmail.com', 'abc1234');
-              signProcess == null ? print('error') : print(signProcess.toString());
+              // signProcess == null ? print('error') : print(signProcess.toString());
             },
           ),
           SizedBox(
@@ -58,8 +58,8 @@ class _SignState extends State<Sign> {
             text: StringConstants.SIGN_UP_MAIL,
             fontSize: Constants.bigFontSize,
             onPressed: () async {
-              signProcess = await _auth.signInAnon();
-              signProcess == null ? print('error') : print(signProcess.email);
+              // signProcess = await _auth.signInAnon();
+              // signProcess == null ? print('error') : print(signProcess.email);
             },
           ),
           SizedBox(

@@ -14,8 +14,13 @@ class AuthService {
         : null;
   }
 
+  // stream to know if signed in or not
+  Stream<UserModel> get user {
+    return _firebaseAuth.authStateChanges().map((user) => _userFromFirebase(user));
+  }
+
   // sign in anon
-  Future signInAnon() async {
+  Future<UserModel> signInAnon() async {
     try {
       var user = (await _firebaseAuth.signInAnonymously()).user;
       return _userFromFirebase(user);
@@ -26,10 +31,10 @@ class AuthService {
   }
 
 // sign in email&&pass
-  Future signInMail(String email, String password) async {
+  Future<UserModel> signInMail(String email, String password) async {
     try {
-      var user = (await _firebaseAuth.signInWithEmailAndPassword(email: email, password: password)).user;
-      return user;
+      //var user = (await _firebaseAuth.signInWithEmailAndPassword(email: email, password: password)).user;
+      //return user;
     } catch (e) {
       print(e.toString());
       return null;

@@ -1,6 +1,8 @@
 import 'package:firebase_learning_app/config/constants/string_constants.dart';
+import 'package:firebase_learning_app/models/user.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class Home extends StatefulWidget {
   static final String routeName = '/home_screen';
@@ -15,19 +17,13 @@ class _HomeState extends State<Home> {
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
-          leading: IconButton(
-            icon: Icon(Icons.arrow_back),
-            onPressed: () {
-              //just go to the sign up screen
-              Navigator.pop(context);
-            },
-          ),
           title: Text(StringConstants.HOME_SCREEN_APP_BAR_TITLE),
+          centerTitle: true,
           actions: [
             IconButton(
               icon: Icon(Icons.exit_to_app),
               onPressed: () {
-                // logout and pop to sign screen
+                // logout
                 Navigator.pop(context);
               },
             ),

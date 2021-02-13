@@ -1,6 +1,6 @@
 class StringConstants {
   static const APP_TITLE = 'Firebase Example App';
-  static const HOME_SCREEN_APP_BAR_TITLE = 'WELCOME';
+  static const HOME_SCREEN_APP_BAR_TITLE = 'HOME PAGE';
   static const SIGN_IN_MAIL = 'Sign In With Mail';
   static const SIGN_UP_MAIL = 'Sign Up With Mail';
   static const SIGN_IN_ANON = 'Sign In Anon';
