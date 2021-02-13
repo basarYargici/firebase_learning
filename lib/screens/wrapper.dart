@@ -4,17 +4,16 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import 'authenticate/sign-screen/sign_in.dart';
+import 'authenticate/sign_in.dart';
 
 class Wrapper extends StatelessWidget {
   static String routeName = '/wrapper_screen';
-
   @override
   Widget build(BuildContext context) {
     final user = Provider.of<UserModel>(context);
     print(user);
     return Scaffold(
-      body: user == null ? Sign() : Home(),
+      body: user == null ? SignIn() : Home(),
     );
   }
 }

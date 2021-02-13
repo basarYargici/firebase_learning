@@ -1,5 +1,5 @@
 import 'package:firebase_core/firebase_core.dart';
-import 'package:firebase_learning_app/screens/wrapper.dart';
+import 'package:firebase_learning_app/screens/authenticate/authenticate.dart';
 import 'package:firebase_learning_app/services/auth.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -27,7 +27,7 @@ class MyApp extends StatelessWidget {
         theme: AppTheme.dark(),
         darkTheme: AppTheme.dark(),
         routes: routes,
-        initialRoute: Wrapper.routeName,
+        initialRoute: Authenticate.routeName,
       ),
     );
   }

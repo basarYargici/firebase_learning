@@ -1,8 +1,8 @@
 import 'package:firebase_learning_app/config/constants/string_constants.dart';
-import 'package:firebase_learning_app/models/user.dart';
+import 'package:firebase_learning_app/screens/authenticate/authenticate.dart';
+import 'package:firebase_learning_app/services/auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 
 class Home extends StatefulWidget {
   static final String routeName = '/home_screen';
@@ -12,19 +12,23 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
+  final AuthService _authService = AuthService();
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
+          automaticallyImplyLeading: false,
           title: Text(StringConstants.HOME_SCREEN_APP_BAR_TITLE),
           centerTitle: true,
           actions: [
             IconButton(
               icon: Icon(Icons.exit_to_app),
-              onPressed: () {
+              onPressed: () async {
                 // logout
-                Navigator.pop(context);
+                await _authService.signOut();
+                await Navigator.pushReplacementNamed(context, Authenticate.routeName);
               },
             ),
           ],
