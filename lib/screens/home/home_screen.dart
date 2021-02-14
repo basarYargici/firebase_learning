@@ -1,6 +1,7 @@
 import 'package:firebase_learning_app/config/constants/string_constants.dart';
 import 'package:firebase_learning_app/screens/authenticate/authenticate.dart';
 import 'package:firebase_learning_app/services/auth_service.dart';
+import 'package:firebase_learning_app/widgets/sign_out_alert_dialog.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -17,27 +18,41 @@ class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
-      child: Scaffold(
-        appBar: AppBar(
-          automaticallyImplyLeading: false,
-          title: Text(StringConstants.HOME_SCREEN_APP_BAR_TITLE),
-          centerTitle: true,
-          actions: [
-            IconButton(
-              icon: Icon(Icons.exit_to_app),
-              onPressed: () async {
-                // logout
-                await _authService.signOut();
-                await Navigator.pushReplacementNamed(context, Authenticate.routeName);
-              },
+      child: WillPopScope(
+        onWillPop: () async {
+          return await showDialog(
+            context: context,
+            builder: (context) {
+              return SignOutAlertDialog(
+                authService: _authService,
+                text: 'Do you want to sign out?',
+              );
+            },
+            barrierDismissible: false,
+          );
+        },
+        child: Scaffold(
+          appBar: AppBar(
+            automaticallyImplyLeading: false,
+            title: Text(StringConstants.HOME_SCREEN_APP_BAR_TITLE),
+            centerTitle: true,
+            actions: [
+              IconButton(
+                icon: Icon(Icons.exit_to_app),
+                onPressed: () async {
+                  // logout
+                  await _authService.signOut();
+                  await Navigator.pushReplacementNamed(context, Authenticate.routeName);
+                },
+              ),
+            ],
+          ),
+          body: Center(
+            child: Container(
+              height: 250,
+              width: 250,
+              color: Colors.red,
             ),
-          ],
-        ),
-        body: Center(
-          child: Container(
-            height: 250,
-            width: 250,
-            color: Colors.red,
           ),
         ),
       ),

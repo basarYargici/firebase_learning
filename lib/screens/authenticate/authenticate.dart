@@ -67,7 +67,7 @@ class _AuthenticateState extends State<Authenticate> {
       text: StringConstants.SIGN_IN_MAIL,
       fontSize: Constants.bigFontSize,
       onPressed: () {
-        Navigator.pushNamed(context, SignIn.routeName);
+        Navigator.pushReplacementNamed(context, SignIn.routeName);
       },
     );
   }
@@ -80,7 +80,7 @@ class _AuthenticateState extends State<Authenticate> {
       text: StringConstants.SIGN_UP_MAIL,
       fontSize: Constants.bigFontSize,
       onPressed: () {
-        Navigator.pushNamed(context, SignUp.routeName);
+        Navigator.pushReplacementNamed(context, SignUp.routeName);
       },
     );
   }

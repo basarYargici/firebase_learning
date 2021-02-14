@@ -61,18 +61,18 @@ class AuthService {
   }
 
 // register in email&&pass
-   Future signUp(BuildContext context, String email, String password) async {
-     try {
-       var user = (await _firebaseAuth.createUserWithEmailAndPassword(email: email, password: password)).user;
-       return user;
-     } on FirebaseAuthException catch (e) {
-       print('FirebaseAuthException');
-       _showSnackBar(context, e.message);
-     } catch (e) {
-       print(e.toString());
-       return null;
-     }
-   }
+  Future signUp(BuildContext context, String email, String password) async {
+    try {
+      var user = (await _firebaseAuth.createUserWithEmailAndPassword(email: email, password: password)).user;
+      return user;
+    } on FirebaseAuthException catch (e) {
+      print('FirebaseAuthException');
+      _showSnackBar(context, e.message);
+    } catch (e) {
+      print(e.toString());
+      return null;
+    }
+  }
 
   // sign out
   Future signOut() async {
