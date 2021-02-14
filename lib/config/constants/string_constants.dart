@@ -8,5 +8,7 @@ class StringConstants {
   static const PASSWORD_DECORATION_LABEL = 'PASSWORD';
   static const MAIL_DECORATION_HINT = 'abc@gmail.com';
   static const PASSWORD_DECORATION_HINT = '1234abcd';
+  static const MAIL_VALIDATION_ERROR = 'Please enter your mail';
+  static const PASSWORD_VALIDATION_ERROR = 'Please enter your password';
 
 }

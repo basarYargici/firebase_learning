@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_learning_app/models/user.dart';
+import 'package:flutter/material.dart';
 
 class AuthService {
   //TODO's Sign in with mail has error it does not check the validation
@@ -21,34 +22,57 @@ class AuthService {
   }
 
   // sign in anon
-  Future<UserModel> signInAnon() async {
+  Future signInAnon(BuildContext context) async {
     try {
       var user = (await _firebaseAuth.signInAnonymously()).user;
       return _userFromFirebase(user);
+    } on FirebaseAuthException catch (e) {
+      print('FirebaseAuthException');
+      _showSnackBar(context, e.message);
     } catch (e) {
       print(e.toString());
+      _showSnackBar(context, e.message);
       return null;
     }
   }
 
 // sign in email&&pass
-  Future signInMail(String email, String password) async {
+  Future signInMail(BuildContext context, String email, String password) async {
     try {
       var user = (await _firebaseAuth.signInWithEmailAndPassword(email: email, password: password)).user;
       return user;
     } on FirebaseAuthException catch (e) {
-      if (e.code == 'weak-password') {
-        print('The password provided is too weak.');
-      } else if (e.code == 'email-already-in-use') {
-        print('The account already exists for that email.');
-      }
-    } catch(e){
+      print('FirebaseAuthException');
+      _showSnackBar(context, e.message);
+    } catch (e) {
       print(e.toString());
+      _showSnackBar(context, e.message);
       return null;
     }
   }
 
+  void _showSnackBar(BuildContext context, String text) {
+    final scaffold = Scaffold.of(context);
+    scaffold.showSnackBar(
+      SnackBar(
+        content: Text(text),
+      ),
+    );
+  }
+
 // register in email&&pass
+   Future signUp(BuildContext context, String email, String password) async {
+     try {
+       var user = (await _firebaseAuth.createUserWithEmailAndPassword(email: email, password: password)).user;
+       return user;
+     } on FirebaseAuthException catch (e) {
+       print('FirebaseAuthException');
+       _showSnackBar(context, e.message);
+     } catch (e) {
+       print(e.toString());
+       return null;
+     }
+   }
 
   // sign out
   Future signOut() async {

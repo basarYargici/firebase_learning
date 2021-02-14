@@ -1,6 +1,6 @@
 import 'package:firebase_learning_app/config/constants/string_constants.dart';
 import 'package:firebase_learning_app/screens/authenticate/authenticate.dart';
-import 'package:firebase_learning_app/services/auth.dart';
+import 'package:firebase_learning_app/services/auth_service.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
