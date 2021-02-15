@@ -10,10 +10,12 @@ class Wrapper extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final user = Provider.of<UserModel>(context);
-    print(user);
-    return Scaffold(
-      body: user == null ? Authenticate() : Home(),
-    );
+    return Scaffold(body: Builder(
+      builder: (BuildContext context) {
+        final user = Provider.of<UserModel>(context);
+        print(user);
+        return user == null ? Authenticate() : Home();
+      },
+    ));
   }
 }

@@ -2,22 +2,22 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_learning_app/models/user.dart';
 import 'package:flutter/material.dart';
 
-class AuthService {
-  //TODO's Sign in with mail has error it does not check the validation
+class AuthService with ChangeNotifier{
   final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
 
   // User from firebase
   UserModel _userFromFirebase(User user) {
     return user != null
         ? UserModel(
-            uid: user.uid,
-            email: user.email,
-          )
+      uid: user.uid,
+      email: user.email,
+    )
         : null;
   }
 
   // stream to know if signed in or not
   Stream<UserModel> get user {
+    notifyListeners();
     return _firebaseAuth.authStateChanges().map((user) => _userFromFirebase(user));
   }
 
@@ -83,4 +83,18 @@ class AuthService {
       return null;
     }
   }
+
+  // reset password
+  // Future resetPassword(BuildContext context, String email, String password) async {
+  //   try {
+  //     var user = (await _firebaseAuth.sendPasswordResetEmail(email:email,actionCodeSettings: ActionCodeSettings() );
+  //     return user;
+  //   } on FirebaseAuthException catch (e) {
+  //     print('FirebaseAuthException');
+  //     _showSnackBar(context, e.message);
+  //   } catch (e) {
+  //     print(e.toString());
+  //     return null;
+  //   }
+  // }
 }

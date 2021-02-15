@@ -1,7 +1,7 @@
 import 'package:firebase_core/firebase_core.dart';
-import 'package:firebase_learning_app/screens/authenticate/authenticate.dart';
 import 'package:firebase_learning_app/screens/wrapper.dart';
 import 'package:firebase_learning_app/services/auth_service.dart';
+import 'package:firebase_learning_app/services/database.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -20,8 +20,15 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return StreamProvider.value(
-      value: AuthService().user, // if null, user did not signed in
+    return MultiProvider(
+      providers: [
+        StreamProvider(
+          create: (context) => AuthService().user, // if null, user did not signed in
+        ),
+        ChangeNotifierProvider(
+          create: (context) => DatabaseService(),
+        )
+      ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
         title: StringConstants.APP_TITLE,

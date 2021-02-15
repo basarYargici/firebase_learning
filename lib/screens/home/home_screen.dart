@@ -1,5 +1,6 @@
 import 'package:firebase_learning_app/config/constants/string_constants.dart';
 import 'package:firebase_learning_app/screens/authenticate/authenticate.dart';
+import 'package:firebase_learning_app/screens/home/components/body.dart';
 import 'package:firebase_learning_app/services/auth_service.dart';
 import 'package:firebase_learning_app/widgets/sign_out_alert_dialog.dart';
 import 'package:flutter/cupertino.dart';
@@ -47,13 +48,7 @@ class _HomeState extends State<Home> {
               ),
             ],
           ),
-          body: Center(
-            child: Container(
-              height: 250,
-              width: 250,
-              color: Colors.red,
-            ),
-          ),
+          body: Body(),
         ),
       ),
     );

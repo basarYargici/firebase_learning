@@ -1,6 +1,7 @@
 import 'package:firebase_learning_app/screens/authenticate/authenticate.dart';
 import 'package:firebase_learning_app/screens/authenticate/sign_in.dart';
 import 'package:firebase_learning_app/screens/authenticate/sign_up.dart';
+import 'package:firebase_learning_app/screens/home/friend_form_screen.dart';
 import 'package:firebase_learning_app/screens/home/home_screen.dart';
 import 'package:firebase_learning_app/screens/wrapper.dart';
 import 'package:flutter/cupertino.dart';
@@ -12,4 +13,5 @@ final Map<String, WidgetBuilder> routes = {
   Authenticate.routeName: (context) => Authenticate(),
   SignIn.routeName: (context) => SignIn(),
   SignUp.routeName: (context) => SignUp(),
+  FriendForm.routeName: (context) => FriendForm(),
 };

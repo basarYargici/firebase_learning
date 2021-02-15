@@ -10,7 +10,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import 'authenticate.dart';
-import 'components/sign_in_mail_button.dart';
 import 'components/sign_up_mail_button.dart';
 
 class SignUp extends StatefulWidget {

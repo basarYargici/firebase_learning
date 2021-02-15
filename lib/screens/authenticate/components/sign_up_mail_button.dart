@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_learning_app/config/constants/color_constants.dart';
 import 'package:firebase_learning_app/config/constants/constants.dart';
 import 'package:firebase_learning_app/config/constants/string_constants.dart';
@@ -8,7 +9,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_signin_button/button_builder.dart';
 
-class buildSignUpButton extends StatelessWidget {
+class buildSignUpButton extends StatefulWidget {
   const buildSignUpButton({
     Key key,
     @required GlobalKey<FormState> formKey,
@@ -27,6 +28,11 @@ class buildSignUpButton extends StatelessWidget {
   final TextEditingController _passController;
 
   @override
+  _buildSignUpButtonState createState() => _buildSignUpButtonState();
+}
+
+class _buildSignUpButtonState extends State<buildSignUpButton> {
+  @override
   Widget build(BuildContext context) {
     return SignInButtonBuilder(
       height: SizeConfig.screenHeight * 0.08,
@@ -35,8 +41,12 @@ class buildSignUpButton extends StatelessWidget {
       text: StringConstants.SIGN_IN_MAIL,
       fontSize: Constants.bigFontSize,
       onPressed: () async {
-        if (_formKey.currentState.validate() && await _auth.signUp(context, _mailController.text.trim(), _passController.text.trim()) != null) {
-          await Navigator.pushReplacementNamed(context, Home.routeName);
+        if (widget._formKey.currentState.validate()) {
+          // TODO pass user information
+          User user = await widget._auth.signUp(context, widget._mailController.text.trim(), widget._passController.text.trim());
+          if (user != null) {
+            await Navigator.pushReplacementNamed(context, Home.routeName);
+          }
         }
       },
     );
